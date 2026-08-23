@@ -26,7 +26,7 @@ Executados no browser contra o site a correr:
 - **Injeção pelos campos do formulário.** Submeti nome, assunto e mensagem com
   `"><script>alert(1)</script>`, `javascript:` e sequências `%0d%0a` (tentativa
   de injeção de cabeçalhos). O URL gerado mantém o prefixo fixo
-  `https://wa.me/351962215940?text=` e todo o conteúdo passa por
+  `https://wa.me/41787307866?text=` e todo o conteúdo passa por
   `encodeURIComponent` — nenhum caractere cru perigoso chega ao URL.
 - **Reflexão no DOM.** O payload nunca aparece no DOM como HTML.
 

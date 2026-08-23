@@ -71,7 +71,7 @@ Guardar em WebP a ~80 % de qualidade.
 ## 2. Formulário de contacto
 
 O botão **«Enviar pelo WhatsApp»** valida os campos e abre o WhatsApp
-(`wa.me/351962215940`) com a mensagem já composta:
+(`wa.me/41787307866`) com a mensagem já composta:
 
 ```
 *Assunto*
