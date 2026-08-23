@@ -162,6 +162,35 @@ Para publicar a partir desta pasta sem passar pelo GitHub:
 npx vercel --prod
 ```
 
+### Domínio palopentertainment.com
+
+Já está registado no projeto Vercel e a propriedade está verificada. O que
+falta é **um passo no GoDaddy**, que é quem gere o DNS
+(`ns63/ns64.domaincontrol.com`).
+
+Hoje o domínio ainda aponta para o Wix, que devolve erro — não há site nenhum a
+funcionar lá, por isso a mudança não deita nada abaixo.
+
+Alterar apenas estes dois registos:
+
+| Tipo | Nome | Valor actual (Wix) | Valor novo |
+|---|---|---|---|
+| A | `@` | `185.230.63.107` | `76.76.21.21` |
+| CNAME | `www` | `pointing.wixdns.net` | `cname.vercel-dns.com` |
+
+**Não tocar em mais nada.** O email da empresa está no Microsoft 365 e depende
+de registos que vivem no mesmo painel:
+
+- `MX` → `palopentertainment-com.mail.protection.outlook.com`
+- `TXT` → `v=spf1 include:secureserver.net -all` e o de verificação da Microsoft
+- `CNAME autodiscover` → `autodiscover.outlook.com`
+
+Apagar ou trocar qualquer um destes deixa a empresa sem email.
+
+A raiz redireciona para `www` (308), porque é o endereço impresso no folheto e
+o que está no `canonical` do site. O certificado HTTPS é emitido pela Vercel
+automaticamente, poucos minutos depois de o DNS propagar.
+
 ## Por confirmar
 
 - **Redes confirmadas:** Facebook `facebook.com/palop.entertainment`,
