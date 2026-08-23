@@ -108,6 +108,13 @@ erro **e preserva o que a pessoa escreveu**. Se fizer esta mudança, altere
 também o rótulo do botão (chave `f7` nas três línguas), que hoje diz
 «Enviar pelo WhatsApp».
 
+> **Atenção à CSP.** O `vercel.json` tem `connect-src 'self'`, o que bloqueia
+> pedidos para domínios externos. Se o `FORM_ENDPOINT` apontar para fora do
+> site (Formspree, por exemplo), acrescente esse domínio ao `connect-src`,
+> senão o envio falha silenciosamente no browser.
+
+
+
 ## 3. Idiomas
 
 Português (pt-PT) é o idioma principal. Inglês e Francês estão completos e
@@ -140,13 +147,20 @@ datas e contactos.
 
 ## 4. Publicar
 
-Qualquer alojamento estático serve. Com a Vercel:
+Já está no ar: **https://palop-entertainment.vercel.app**
+
+O projeto Vercel `palop-entertainment` está ligado ao repositório
+`kekemam/PALOP-ENTERTAINMENT`. **Cada push para `main` faz deploy automático**
+— não há passo de build.
+
+Os commits têm de ter como autor `mampassarofficial@gmail.com`, senão a Vercel
+ignora-os.
+
+Para publicar a partir desta pasta sem passar pelo GitHub:
 
 ```bash
 npx vercel --prod
 ```
-
-(a partir desta pasta; não há passo de build)
 
 ## Por confirmar
 
