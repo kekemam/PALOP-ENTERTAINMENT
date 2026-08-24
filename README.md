@@ -72,6 +72,35 @@ altere a `background-position` da classe respetiva no `<style>`.
 Formatos sugeridos: hero 2400×1400 · retratos 1200×1600 · cartões 1400×1000.
 Guardar em WebP a ~80 % de qualidade.
 
+## 2. Agenda e notícias
+
+A secção «Agenda» é alimentada por uma lista no `<script>` do `index.html`.
+Procure `const AGENDA=[`.
+
+```js
+{ data:   '2027-03-14',              // AAAA-MM-DD, obrigatório
+  tipo:   'evento',                  // 'evento' | 'noticia'
+  titulo: 'Nome do evento',          // texto, ou {pt:'…',en:'…',fr:'…'}
+  texto:  'Descrição curta.',        // idem, opcional
+  local:  'Lisboa ao Vivo, Lisboa',  // opcional
+  link:   'https://…' }              // opcional
+```
+
+- **A secção aparece e desaparece sozinha.** Com a lista vazia, tanto a
+  secção como o link no menu ficam escondidos — o site nunca mostra um
+  espaço em branco nem uma agenda vazia.
+- O que estiver no futuro aparece primeiro, marcado **«Próximo»**, por
+  ordem de proximidade. O resto fica abaixo, marcado «Realizado» ou
+  «Notícia», do mais recente para o mais antigo.
+- As datas são formatadas na língua activa (24 de junho / 24 June /
+  24 juin) sem trabalho adicional.
+- Nos campos de texto pode pôr uma string simples, que serve para as três
+  línguas, ou um objeto `{pt,en,fr}` se quiser traduzir.
+
+Neste momento tem **uma entrada**: o lançamento dos Irmãos Verdades, de
+2022, retirado do folheto. É o único evento com data confirmada nos
+materiais fornecidos — nada foi inventado.
+
 ## 2. Formulário de contacto
 
 O botão **«Enviar pelo WhatsApp»** valida os campos e abre o WhatsApp

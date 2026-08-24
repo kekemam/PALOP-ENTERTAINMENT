@@ -471,6 +471,33 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
 .mbox li{margin-bottom:8px}
 .mbox .btn{margin-top:12px}
 
+/* ── agenda ─────────────────────────────────────────────── */
+#agenda[hidden]{display:none}
+.agenda{border-top:1px solid var(--line2);margin-top:clamp(34px,4.5vw,54px)}
+.agenda article{display:grid;grid-template-columns:150px 1fr auto;gap:clamp(18px,3vw,42px);
+  align-items:start;padding:clamp(24px,3vw,34px) 0;border-bottom:1px solid var(--line2);
+  position:relative;transition:background .5s var(--ease)}
+.agenda article::before{content:"";position:absolute;left:calc(var(--pad) * -1);right:calc(var(--pad) * -1);
+  top:0;bottom:0;background:linear-gradient(90deg,rgba(216,180,92,.06),transparent 60%);
+  opacity:0;transition:opacity .5s var(--ease);pointer-events:none}
+.agenda article:hover::before{opacity:1}
+.agenda .quando{font-family:var(--f);font-size:.78rem;letter-spacing:.06em;color:var(--sand);
+  display:flex;flex-direction:column;gap:8px}
+.agenda .quando b{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;color:var(--white);line-height:1}
+.agenda .selo{align-self:flex-start;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  padding:5px 10px;border:1px solid rgba(216,180,92,.45);color:var(--gold);border-radius:2px}
+.agenda .selo.passado{border-color:var(--line);color:var(--mute2)}
+.agenda h3{font-size:clamp(1.1rem,1.9vw,1.45rem);margin-bottom:10px}
+.agenda p{color:var(--mute);font-size:.94rem;max-width:60ch}
+.agenda .onde{display:block;margin-top:12px;font-family:var(--f);font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mute2)}
+.agenda .lnk{white-space:nowrap}
+@media(max-width:820px){
+  .agenda article{grid-template-columns:1fr;gap:14px}
+  .agenda .quando{flex-direction:row;align-items:baseline;gap:12px}
+  .agenda .quando b{font-size:1.2rem}
+}
+
 /* ── folheto ────────────────────────────────────────────── */
 .folheto{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.2vw,26px);margin-top:clamp(34px,4.5vw,54px)}
 @media(max-width:700px){.folheto{grid-template-columns:1fr}}
@@ -550,6 +577,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
     <nav class="main" data-ia="ariaNav" aria-label="Navegação principal">
       <a href="#inicio" data-i="nav1">Início</a>
       <a href="#sobre" data-i="nav2">Quem Somos</a>
+      <a href="#agenda" data-i="nav7" hidden>Agenda</a>
       <a href="#projetos" data-i="nav3">Projetos</a>
       <a href="#areas" data-i="nav4">Áreas de Atuação</a>
       <a href="#ceo" data-i="nav5">Carlos Uissa</a>
@@ -570,6 +598,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
 <div class="drawer" id="drawer">
   <a href="#inicio"><s>01</s><span data-i="nav1">Início</span></a>
   <a href="#sobre"><s>02</s><span data-i="nav2">Quem Somos</span></a>
+  <a href="#agenda" hidden><s>03</s><span data-i="nav7">Agenda</span></a>
   <a href="#projetos"><s>03</s><span data-i="nav3">Projetos</span></a>
   <a href="#areas"><s>04</s><span data-i="nav4">Áreas de Atuação</span></a>
   <a href="#ceo"><s>05</s><span data-i="nav5">Carlos Uissa</span></a>
@@ -671,6 +700,20 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ══ 3b. AGENDA / NOTÍCIAS ══ -->
+<section class="sec" id="agenda" hidden style="padding-top:0">
+  <div class="wrap">
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between">
+      <div>
+        <span class="eyebrow rv" data-i="ag_eye">Agenda</span>
+        <h2 class="h-lg rv" data-d="1" style="margin-top:22px;max-width:16ch" data-i="ag_t">O que está a acontecer.</h2>
+      </div>
+      <p class="lead rv" data-d="2" style="max-width:32ch;font-size:.95rem" data-i="ag_p">Eventos, lançamentos e notícias da PALOP ENTERTAINMENT.</p>
+    </div>
+    <div class="agenda rv" data-d="2" id="agenda-lista"></div>
   </div>
 </section>
 
@@ -1093,6 +1136,9 @@ pt:{
  ariaAbrir:"Abrir menu",ariaFechar2:"Fechar menu",ariaFechar:"Fechar",ariaFolheto:"Folheto",
  altFol1:"Folheto PALOP Entertainment — quem somos, o que fazemos e contactos",
  altFol2:"Folheto PALOP Entertainment — projetos, CEO, missão, visão e valores",
+ nav7:"Agenda",ag_eye:"Agenda",ag_t:"O que está a acontecer.",
+ ag_p:"Eventos, lançamentos e notícias da PALOP ENTERTAINMENT.",
+ ag_proximo:"Próximo",ag_arquivo:"Realizado",ag_noticia:"Notícia",
  skip:"Saltar para o conteúdo",title:"PALOP ENTERTAINMENT — A língua é o fator cultural que nos une",
  nav1:"Início",nav2:"Quem Somos",nav3:"Projetos",nav4:"Áreas de Atuação",nav5:"Carlos Uissa",nav6:"Contactos",
  cta1:"Fale Connosco",more:"Saber mais",scroll:"Scroll",
@@ -1172,6 +1218,9 @@ T.en={
  ariaAbrir:"Open menu",ariaFechar2:"Close menu",ariaFechar:"Close",ariaFolheto:"Brochure",
  altFol1:"PALOP Entertainment brochure — about us, what we do and contacts",
  altFol2:"PALOP Entertainment brochure — projects, CEO, mission, vision and values",
+ nav7:"What's on",ag_eye:"What's on",ag_t:"What is happening.",
+ ag_p:"Events, releases and news from PALOP ENTERTAINMENT.",
+ ag_proximo:"Upcoming",ag_arquivo:"Past",ag_noticia:"News",
  skip:"Skip to content",title:"PALOP ENTERTAINMENT — Language is the cultural factor that unites us",
  nav1:"Home",nav2:"About Us",nav3:"Projects",nav4:"What We Do",nav5:"Carlos Uissa",nav6:"Contact",
  cta1:"Get in touch",more:"Learn more",scroll:"Scroll",
@@ -1251,6 +1300,9 @@ T.fr={
  ariaAbrir:"Ouvrir le menu",ariaFechar2:"Fermer le menu",ariaFechar:"Fermer",ariaFolheto:"Brochure",
  altFol1:"Brochure PALOP Entertainment — qui sommes-nous, ce que nous faisons et contacts",
  altFol2:"Brochure PALOP Entertainment — projets, CEO, mission, vision et valeurs",
+ nav7:"Agenda",ag_eye:"Agenda",ag_t:"Ce qui se passe.",
+ ag_p:"Événements, sorties et actualités de PALOP ENTERTAINMENT.",
+ ag_proximo:"À venir",ag_arquivo:"Passé",ag_noticia:"Actualité",
  skip:"Aller au contenu",title:"PALOP ENTERTAINMENT — La langue est le facteur culturel qui nous unit",
  nav1:"Accueil",nav2:"Qui sommes-nous",nav3:"Projets",nav4:"Nos domaines",nav5:"Carlos Uissa",nav6:"Contact",
  cta1:"Contactez-nous",more:"En savoir plus",scroll:"Défiler",
@@ -1340,6 +1392,7 @@ function setLang(l){
   $$('[data-ialt]').forEach(el=>{ const v=d[el.dataset.ialt]; if(v!=null) el.setAttribute('alt',v); });
   const md=$('meta[name=description]'); if(md&&d.metaDesc) md.content=d.metaDesc;
   if(typeof pintaMarquee==='function') pintaMarquee();
+  if(typeof pintaAgenda==='function'){ pintaAgenda(); if(typeof onScroll==='function') onScroll(); }
   document.documentElement.dataset.lang=l;
   $$('.lang button').forEach(b=>{
     const on=b.dataset.lang===l; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on);
@@ -1358,6 +1411,9 @@ const onScroll=()=>{
   $$('nav.main a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
 };
 window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+/* A agenda entra no DOM depois deste primeiro cálculo (e as imagens mudam as
+   alturas), por isso o destaque da secção activa tem de ser refeito. */
+addEventListener('load',onScroll);
 
 /* ── menu mobile ─────────────────────────────────────────── */
 const bg=$('#burger');
@@ -1382,6 +1438,63 @@ function pintaMarquee(){
     .map(k=>d[k]).filter(Boolean);
   const row=items.map(i=>`<span>${i}</span>`).join('');
   $('#marq').innerHTML=row+row;
+}
+
+/* ═══ AGENDA ══════════════════════════════════════════════
+   Acrescente aqui os eventos e notícias. A secção aparece
+   sozinha quando a lista tem entradas e desaparece quando
+   está vazia — nunca fica um espaço vazio no site.
+
+   { data:   '2027-03-14',                 // AAAA-MM-DD, obrigatório
+     tipo:   'evento',                     // 'evento' | 'noticia'
+     titulo: 'Nome do evento',             // texto, ou {pt:'…',en:'…',fr:'…'}
+     texto:  'Descrição curta.',           // idem, opcional
+     local:  'Lisboa ao Vivo, Lisboa',     // opcional
+     link:   'https://…' }                 // opcional
+
+   O que estiver no futuro aparece primeiro, marcado como
+   «Próximo»; o resto fica em baixo por ordem inversa.
+   ══════════════════════════════════════════════════════════ */
+const AGENDA=[
+  { data:'2022-06-24', tipo:'evento',
+    titulo:'Irmãos Verdades — “Te Amo”',
+    local:'Lisboa ao Vivo, Lisboa',
+    texto:{pt:'Lançamento do novo álbum, seguido de tournée de norte a sul de Portugal e por alguns países de África.',
+           en:'New album launch, followed by a tour from north to south of Portugal and through several African countries.',
+           fr:'Sortie du nouvel album, suivie d\'une tournée du nord au sud du Portugal et dans plusieurs pays d\'Afrique.'} },
+];
+
+function txt(v){ if(v==null) return ''; return typeof v==='string'? v : (v[LANG]||v.pt||''); }
+
+function pintaAgenda(){
+  const lista=$('#agenda-lista'), sec=$('#agenda'); if(!lista||!sec) return;
+  const d=T[LANG];
+  const hoje=new Date(); hoje.setHours(0,0,0,0);
+  const itens=AGENDA.filter(e=>e&&e.data).map(e=>({...e,_d:new Date(e.data+'T00:00:00')}));
+  sec.hidden = itens.length===0;
+  $$('a[href="#agenda"]').forEach(a=>a.hidden=itens.length===0);
+  if(!itens.length){ lista.innerHTML=''; return; }
+  const futuros=itens.filter(e=>e._d>=hoje).sort((a,b)=>a._d-b._d);
+  const passados=itens.filter(e=>e._d<hoje).sort((a,b)=>b._d-a._d);
+  const loc = LANG==='pt'?'pt-PT':(LANG==='fr'?'fr-FR':'en-GB');
+  const fmtDia=new Intl.DateTimeFormat(loc,{day:'2-digit',month:'long'});
+  lista.innerHTML=[...futuros,...passados].map(e=>{
+    const proximo=e._d>=hoje;
+    const selo = proximo ? d.ag_proximo : (e.tipo==='noticia'? d.ag_noticia : d.ag_arquivo);
+    return `<article>
+      <div class="quando">
+        <b>${fmtDia.format(e._d)}</b>
+        <span>${e._d.getFullYear()}</span>
+        <span class="selo${proximo?'':' passado'}">${selo}</span>
+      </div>
+      <div>
+        <h3>${txt(e.titulo)}</h3>
+        ${e.texto?`<p>${txt(e.texto)}</p>`:''}
+        ${e.local?`<span class="onde">${txt(e.local)}</span>`:''}
+      </div>
+      ${e.link?`<a class="lnk" href="${e.link}" target="_blank" rel="noopener">${d.more}<svg width="14" height="14"><use href="#ar"/></svg></a>`:'<span></span>'}
+    </article>`;
+  }).join('');
 }
 
 /* ── modal ───────────────────────────────────────────────── */
