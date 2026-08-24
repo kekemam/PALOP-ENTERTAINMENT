@@ -7,7 +7,11 @@ sem dependências. Basta abrir o ficheiro ou publicar a pasta.
 
 ```
 palop/
-├── index.html     ← o site completo (~108 KB)
+├── index.html     ← o site completo (~114 KB)
+├── 404.html       ← página de erro, com o mesmo aspecto do site
+├── robots.txt · sitemap.xml · site.webmanifest
+├── apple-touch-icon.png
+├── vercel.json    ← cabeçalhos de segurança e cache
 ├── img/           ← imagens em WebP (~1,4 MB carregados pela página)
 └── README.md
 ```
