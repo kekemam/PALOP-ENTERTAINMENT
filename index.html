@@ -411,7 +411,7 @@ body.menu .drawer{transform:translateY(0)}
   display:flex;flex-wrap:wrap;gap:8px}
 .handles a{color:var(--mute);border-bottom:1px solid transparent;transition:.3s}
 .handles a:hover{color:var(--gold-l);border-bottom-color:var(--gold)}
-form{background:var(--ink);border:1px solid var(--line2);padding:clamp(24px,3.4vw,44px)}
+form{background:var(--ink);border:1px solid var(--line2);padding:clamp(24px,3.4vw,44px);scroll-margin-top:110px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media(max-width:620px){.frow{grid-template-columns:1fr}}
 .fld{position:relative;margin-bottom:18px;display:flex;flex-direction:column}
@@ -559,7 +559,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
         <button type="button" data-lang="fr" aria-pressed="false">FR</button>
       </div>
-      <a class="btn" href="#contactos"><span data-i="cta1">Fale Connosco</span></a>
+      <a class="btn" href="#cform"><span data-i="cta1">Fale Connosco</span></a>
       <button class="burger" id="burger" data-ia="ariaAbrir" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><i></i><i></i><i></i></button>
     </div>
   </div>
@@ -572,7 +572,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
   <a href="#areas"><s>04</s><span data-i="nav4">Áreas de Atuação</span></a>
   <a href="#ceo"><s>05</s><span data-i="nav5">Carlos Uissa</span></a>
   <a href="#contactos"><s>06</s><span data-i="nav6">Contactos</span></a>
-  <a class="btn" href="#contactos"><span data-i="cta1">Fale Connosco</span></a>
+  <a class="btn" href="#cform"><span data-i="cta1">Fale Connosco</span></a>
 </div>
 
 <main id="main">
@@ -837,7 +837,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
           <h3 style="margin-top:0" data-i="a8t">O seu projeto.</h3>
           <p data-i="a8p">Tem uma ideia, marca ou iniciativa cultural? Falamos consigo.</p>
         </div>
-        <a class="lnk" href="#contactos" style="margin-top:20px"><span data-i="cta1">Fale Connosco</span><svg class="ar" width="15" height="15"><use href="#ar"/></svg></a>
+        <a class="lnk" href="#cform" style="margin-top:20px"><span data-i="cta1">Fale Connosco</span><svg class="ar" width="15" height="15"><use href="#ar"/></svg></a>
       </article>
     </div>
   </div>
@@ -933,7 +933,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
     <span class="eyebrow c rv" data-i="s9eye">Vamos trabalhar juntos</span>
     <h2 class="h-lg rv" data-d="1" data-i="s9t">Vamos criar novas pontes entre Portugal e África.</h2>
     <p class="lead rv" data-d="2" data-i="s9p">Tem um projeto, evento, artista, marca ou iniciativa cultural? Fale connosco.</p>
-    <a class="btn rv" data-d="3" href="#contactos"><span data-i="s9b">Contacte a PALOP ENTERTAINMENT</span><svg class="ar" width="16" height="16"><use href="#ar"/></svg></a>
+    <a class="btn rv" data-d="3" href="#cform"><span data-i="s9b">Contacte a PALOP ENTERTAINMENT</span><svg class="ar" width="16" height="16"><use href="#ar"/></svg></a>
   </div>
 </section>
 
@@ -1065,7 +1065,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
     <span class="eyebrow" id="mcat"></span>
     <h3 id="mtit"></h3>
     <div id="mbody"></div>
-    <a class="btn" href="#contactos" data-close><span data-i="cta1">Fale Connosco</span></a>
+    <a class="btn" href="#cform" data-close><span data-i="cta1">Fale Connosco</span></a>
   </div>
 </div>
 
@@ -1436,6 +1436,14 @@ document.addEventListener('keydown',e=>{
   if((e.key==='Enter'||e.key===' ')&&af&&af.dataset&&af.dataset.zoom){
     e.preventDefault(); openLb(af.dataset.zoom);
   }
+});
+
+/* ── ir directamente para o formulário ───────────────────── */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href="#cform"]');
+  if(!a) return;
+  closeMenu();
+  setTimeout(()=>{ const c=$('#f-nome'); if(c) c.focus({preventScroll:true}); },700);
 });
 
 /* ── formulário ──────────────────────────────────────────── */
