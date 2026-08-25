@@ -391,23 +391,17 @@ body.menu .drawer{transform:translateY(0)}
 .cta .btn{margin-top:36px}
 
 /* ── contactos ──────────────────────────────────────────── */
-.cont-in{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(38px,6vw,86px);align-items:start}
-@media(max-width:900px){.cont-in{grid-template-columns:1fr}}
-.cinfo dl{margin-top:34px}
-.cinfo dt{font-family:var(--f);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.cinfo dd{margin:0 0 26px;font-size:.98rem;color:rgba(245,242,236,.86);line-height:1.6}
-.cinfo dd a{border-bottom:1px solid var(--line);transition:.3s;display:inline-block}
-.cinfo dd a:hover{color:var(--gold-l);border-color:var(--gold)}
+.cont-in{display:grid;gap:clamp(28px,4vw,44px);max-width:780px;margin:0 auto}
+.cinfo{text-align:center}
+.cinfo .lead{margin-inline:auto}
 .socials{display:flex;gap:10px;margin-top:6px}
 .socials a{width:42px;height:42px;border:1px solid var(--line);display:grid;place-items:center;color:var(--mute);
   transition:.4s var(--ease)}
 .socials a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
-.cinfo dd .socials a{display:grid;border-bottom:1px solid var(--line)}
 .socials svg{width:17px;height:17px}
 .wa-tag{display:inline-flex;align-items:center;gap:6px;margin-left:10px;padding:3px 9px;
   font-family:var(--f);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
   border:1px solid var(--line);color:var(--mute2);transition:.3s;vertical-align:middle}
-.cinfo dd a.wa-tag{display:inline-flex;border-bottom:1px solid var(--line)}
 .wa-tag:hover{border-color:var(--gold);color:var(--gold-l)}
 .handles{margin-top:14px;font-family:var(--f);font-size:.76rem;letter-spacing:.02em;color:var(--mute2);
   display:flex;flex-wrap:wrap;gap:8px}
@@ -987,30 +981,9 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
   <div class="wrap">
     <div class="cont-in">
       <div class="cinfo">
-        <span class="eyebrow rv" data-i="s10eye">Contactos</span>
+        <span class="eyebrow c rv" data-i="s10eye">Contactos</span>
         <h2 class="h-lg rv" data-d="1" style="margin:22px 0 20px" data-i="s10t">Falemos.</h2>
         <p class="lead rv" data-d="2" style="font-size:1rem" data-i="s10p">Estamos em Oeiras, Portugal — e ligados aos cinco PALOP.</p>
-        <dl class="rv" data-d="3">
-          <dt data-i="c1">Morada</dt>
-          <dd>PALOP ENTERTAINMENT<br>Lagoas Park, Edifício 7, 1.º Piso<br>2740-244 Porto Salvo, Oeiras, Portugal</dd>
-          <dt data-i="c2">Telefone</dt>
-          <dd><a href="tel:+41787307866">+41 78 730 78 66</a>
-            <a href="https://wa.me/41787307866" target="_blank" rel="noopener" class="wa-tag"><svg width="13" height="13" aria-hidden="true"><use href="#wa"/></svg>WhatsApp</a></dd>
-          <dt data-i="c3">Email</dt>
-          <dd><a href="mailto:info@palopentertainment.com">info@palopentertainment.com</a></dd>
-          <dt data-i="c5">Redes sociais</dt>
-          <dd>
-            <div class="socials">
-              <a href="https://www.facebook.com/palop.entertainment" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></a>
-              <a href="https://www.instagram.com/palop.entertainment" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            </div>
-            <p class="handles">
-              <a href="https://www.instagram.com/palop.entertainment" target="_blank" rel="noopener">@palop.entertainment</a>
-              <span aria-hidden="true">·</span>
-              <a href="https://www.instagram.com/palopjobs" target="_blank" rel="noopener">@palopjobs</a>
-            </p>
-          </dd>
-        </dl>
       </div>
 
       <form id="cform" novalidate class="rv" data-d="2">
@@ -1071,7 +1044,8 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
         <h4 data-i="c0">Contactos</h4>
         <address>
           Lagoas Park, Edifício 7, 1.º Piso<br>2740-244 Porto Salvo, Oeiras<br>Portugal<br>
-          <a href="tel:+41787307866">+41 78 730 78 66</a><br>
+          <a href="tel:+41787307866">+41 78 730 78 66</a>
+          <a href="https://wa.me/41787307866" target="_blank" rel="noopener" class="wa-tag"><svg width="13" height="13" aria-hidden="true"><use href="#wa"/></svg>WhatsApp</a><br>
           <a href="mailto:info@palopentertainment.com">info@palopentertainment.com</a>
         </address>
         <div class="socials" style="margin-top:18px">
@@ -1184,8 +1158,7 @@ pt:{
  s9eye:"Vamos trabalhar juntos",s9t:"Vamos criar novas pontes entre Portugal e África.",
  s9p:"Tem um projeto, evento, artista, marca ou iniciativa cultural? Fale connosco.",s9b:"Contacte a PALOP ENTERTAINMENT",
  s10eye:"Contactos",s10t:"Falemos.",s10p:"Estamos em Oeiras, Portugal — e ligados aos cinco PALOP.",
- c0:"Contactos",c1:"Morada",c2:"Telefone",c3:"Email",c5:"Redes sociais",
- f0:"Envie-nos uma mensagem",f0p:"Respondemos com a maior brevidade possível.",
+ c0:"Contactos",f0:"Envie-nos uma mensagem",f0p:"Respondemos com a maior brevidade possível.",
  f1:"Nome *",f2:"Email *",f3:"Telefone",f4:"Empresa / Organização",f5:"Assunto *",f6:"Mensagem *",f7:"Enviar pelo WhatsApp",
  f8:"O botão abre o WhatsApp com a mensagem já escrita — falta só tocar em enviar. Os seus dados são utilizados exclusivamente para responder ao seu contacto.",
  e1:"Indique o seu nome.",e2:"Indique um email válido.",e3:"Indique o assunto.",e4:"Escreva a sua mensagem.",
@@ -1266,8 +1239,7 @@ T.en={
  s9eye:"Let's work together",s9t:"Let's build new bridges between Portugal and Africa.",
  s9p:"Do you have a project, event, artist, brand or cultural initiative? Talk to us.",s9b:"Contact PALOP ENTERTAINMENT",
  s10eye:"Contact",s10t:"Let's talk.",s10p:"We are based in Oeiras, Portugal — and connected to the five PALOP countries.",
- c0:"Contact",c1:"Address",c2:"Phone",c3:"Email",c5:"Social media",
- f0:"Send us a message",f0p:"We will reply as soon as possible.",
+ c0:"Contact",f0:"Send us a message",f0p:"We will reply as soon as possible.",
  f1:"Name *",f2:"Email *",f3:"Phone",f4:"Company / Organisation",f5:"Subject *",f6:"Message *",f7:"Send via WhatsApp",
  f8:"The button opens WhatsApp with your message ready — you just hit send. Your data is used solely to reply to your enquiry.",
  e1:"Please enter your name.",e2:"Please enter a valid email.",e3:"Please enter a subject.",e4:"Please write your message.",
@@ -1348,8 +1320,7 @@ T.fr={
  s9eye:"Travaillons ensemble",s9t:"Construisons de nouveaux ponts entre le Portugal et l'Afrique.",
  s9p:"Vous avez un projet, un événement, un artiste, une marque ou une initiative culturelle ? Parlez-nous en.",s9b:"Contacter PALOP ENTERTAINMENT",
  s10eye:"Contact",s10t:"Parlons-en.",s10p:"Nous sommes à Oeiras, au Portugal — et reliés aux cinq PALOP.",
- c0:"Contact",c1:"Adresse",c2:"Téléphone",c3:"Email",c5:"Réseaux sociaux",
- f0:"Envoyez-nous un message",f0p:"Nous vous répondrons dans les meilleurs délais.",
+ c0:"Contact",f0:"Envoyez-nous un message",f0p:"Nous vous répondrons dans les meilleurs délais.",
  f1:"Nom *",f2:"Email *",f3:"Téléphone",f4:"Entreprise / Organisation",f5:"Objet *",f6:"Message *",f7:"Envoyer via WhatsApp",
  f8:"Le bouton ouvre WhatsApp avec votre message déjà rédigé — il ne reste qu'à l'envoyer. Vos données servent uniquement à répondre à votre demande.",
  e1:"Indiquez votre nom.",e2:"Indiquez un email valide.",e3:"Indiquez l'objet.",e4:"Écrivez votre message.",
