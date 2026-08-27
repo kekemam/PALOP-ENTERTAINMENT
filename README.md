@@ -13,6 +13,7 @@ palop/
 ├── apple-touch-icon.png
 ├── vercel.json    ← cabeçalhos de segurança e cache
 ├── img/           ← imagens em WebP (~1,4 MB carregados pela página)
+├── ferramentas/   ← foto.py, prepara uma imagem para o site
 └── README.md
 ```
 
@@ -51,26 +52,40 @@ site (pasta `img/`):
 | `og.jpg` | partilhas em redes sociais | recorte da arte de capa |
 | `evento.webp` | *(não usado)* — alternativa para «Quem Somos» | roll-up sozinho num evento |
 
-Os slots ainda por preencher estão comentados no topo do `<style>` (bloco
-«SLOTS DE IMAGEM») — enquanto não tiverem fotografia, os cartões usam
-composições gráficas de fallback que continuam a ler bem:
+Todos os slots estão preenchidos.
 
-Todos os slots estão preenchidos. Se houver imagens melhores para algum
-cartão, basta trocar o ficheiro em `img/` mantendo o nome.
+### Trocar uma fotografia
 
-Nas imagens de campanha (Turismo, Jobs, Agência, PALOP TV) foi recortada
-apenas a zona de imagem, deixando de fora os títulos e o logótipo já impressos
-no cartaz — de outro modo apareceriam dois títulos sobrepostos no mesmo
-cartão. No PALOP Jobs, as duas colunas de pessoas foram justapostas para
-eliminar a coluna central de ícones e texto; no PALOP TV usou-se a zona dos
-arcos e do mapa, sem o lettering do canal.
+Há uma ferramenta que corta, redimensiona e converte para WebP com o nome
+certo — não é preciso saber que tamanho leva cada sítio:
 
-O enquadramento de cada cartão é controlado por classes no `index.html`:
-`.top` (topo da imagem), `.low` (base), `.right` e `.face`. Para reenquadrar,
-altere a `background-position` da classe respetiva no `<style>`.
+```bash
+python3 ferramentas/foto.py ~/Desktop/nova-foto.jpg ceo --foco cima
+```
 
-Formatos sugeridos: hero 2400×1400 · retratos 1200×1600 · cartões 1400×1000.
-Guardar em WebP a ~80 % de qualidade.
+`python3 ferramentas/foto.py --lista` mostra os sítios disponíveis (`hero`,
+`sobre`, `ceo`, `verdades`, `cartaz`, `festival`, `miss`, `tv`, `agencia`,
+`turismo`, `jobs`, `equipa`, `og`). O `--foco` decide o que fica de fora
+quando a foto é mais alta do que o sítio: `cima` guarda a cabeça, `baixo`
+guarda os pés, `centro` é o que acontece por omissão.
+
+Depois é publicar:
+
+```bash
+git add img && git commit -m "Nova foto: ceo" && git push
+```
+
+A Vercel republica em cerca de 30 segundos.
+
+**O recorte é automático, não é inteligente.** A ferramenta corta pelo
+centro — se o motivo estiver a um canto, ou se quiser um retrato apertado
+a partir de uma foto de corpo inteiro, corte primeiro no telemóvel e só
+depois passe pela ferramenta. Ela avisa quando o original é mais pequeno
+do que o necessário e a foto vai sair menos nítida.
+
+**Não substitua ficheiros à mão em `img/`.** Um JPEG com o nome `.webp`
+não aparece no site: o servidor anuncia-o como WebP e o browser recusa-o,
+por causa dos cabeçalhos de segurança. A ferramenta trata da conversão.
 
 ## 2. Agenda e notícias
 
