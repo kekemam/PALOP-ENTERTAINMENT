@@ -98,7 +98,19 @@ Procure `const AGENDA=[`.
   titulo: 'Nome do evento',          // texto, ou {pt:'…',en:'…',fr:'…'}
   texto:  'Descrição curta.',        // idem, opcional
   local:  'Lisboa ao Vivo, Lisboa',  // opcional
-  link:   'https://…' }              // opcional
+  link:   'https://…',               // opcional
+  cartaz: 'cartaz-do-evento.webp' }  // opcional, ficheiro em img/
+```
+
+O `cartaz` mostra uma miniatura ao lado do texto que abre em tamanho real
+ao ser clicada. Para preparar a imagem a partir do cartaz original:
+
+```bash
+python3 -c "
+from PIL import Image
+im=Image.open('/caminho/do/cartaz.jpg').convert('RGB')
+im.thumbnail((900,2700), Image.LANCZOS)
+im.save('img/cartaz-do-evento.webp','WEBP',quality=80,method=6)"
 ```
 
 - **A secção aparece e desaparece sozinha.** Com a lista vazia, tanto a
@@ -112,9 +124,10 @@ Procure `const AGENDA=[`.
 - Nos campos de texto pode pôr uma string simples, que serve para as três
   línguas, ou um objeto `{pt,en,fr}` se quiser traduzir.
 
-Neste momento tem **uma entrada**: o lançamento dos Irmãos Verdades, de
-2022, retirado do folheto. É o único evento com data confirmada nos
-materiais fornecidos — nada foi inventado.
+Neste momento tem **três entradas**: dois espectáculos de Setembro de 2026
+(Chito Kaharam em Faro e o Show de Independência da Guiné-Bissau em
+Quarteira) e o lançamento dos Irmãos Verdades de 2022, no arquivo. Todos
+saíram de cartazes fornecidos — nada foi inventado.
 
 ## 2. Formulário de contacto
 

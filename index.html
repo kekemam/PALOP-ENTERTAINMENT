@@ -481,6 +481,12 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
 .agenda .selo{align-self:flex-start;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
   padding:5px 10px;border:1px solid rgba(216,180,92,.45);color:var(--gold);border-radius:2px}
 .agenda .selo.passado{border-color:var(--line);color:var(--mute2)}
+.agenda .corpo{display:flex;gap:clamp(16px,2vw,26px);align-items:flex-start}
+.agenda .cartaz{flex:none;width:clamp(74px,7vw,104px);border:1px solid var(--line2);overflow:hidden;
+  cursor:zoom-in;background:var(--ink2);transition:border-color .4s var(--ease),transform .5s var(--ease)}
+.agenda .cartaz:hover{border-color:rgba(216,180,92,.5);transform:translateY(-3px)}
+.agenda .cartaz img{width:100%;height:auto;display:block;filter:brightness(.9);transition:filter .5s}
+.agenda .cartaz:hover img{filter:brightness(1)}
 .agenda h3{font-size:clamp(1.1rem,1.9vw,1.45rem);margin-bottom:10px}
 .agenda p{color:var(--mute);font-size:.94rem;max-width:60ch}
 .agenda .onde{display:block;margin-top:12px;font-family:var(--f);font-size:.7rem;letter-spacing:.16em;
@@ -488,6 +494,7 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
 .agenda .lnk{white-space:nowrap}
 @media(max-width:820px){
   .agenda article{grid-template-columns:1fr;gap:14px}
+  .agenda .cartaz{width:84px}
   .agenda .quando{flex-direction:row;align-items:baseline;gap:12px}
   .agenda .quando b{font-size:1.2rem}
 }
@@ -1421,12 +1428,30 @@ function pintaMarquee(){
      titulo: 'Nome do evento',             // texto, ou {pt:'…',en:'…',fr:'…'}
      texto:  'Descrição curta.',           // idem, opcional
      local:  'Lisboa ao Vivo, Lisboa',     // opcional
-     link:   'https://…' }                 // opcional
+     link:   'https://…',                // opcional
+     cartaz: 'cartaz-do-evento.webp' }   // opcional, ficheiro dentro de img/
 
    O que estiver no futuro aparece primeiro, marcado como
    «Próximo»; o resto fica em baixo por ordem inversa.
    ══════════════════════════════════════════════════════════ */
 const AGENDA=[
+
+  { data:'2026-09-12', tipo:'evento',
+    titulo:'Chito Kaharam — pela primeira vez no Algarve',
+    local:'Espaço O Russo · Clube Atlético Pontense, Faro',
+    cartaz:'cartaz-chito-kaharam.webp',
+    texto:{pt:'Sábado, 22h00. Bilhetes: 1.º lote 15 €, 2.º lote 20 €, 3.º lote 25 €. Pré-reserva por MB WAY 910 272 196 · Informações +351 920 472 974.',
+           en:'Saturday, 10 pm. Tickets: 1st tier €15, 2nd tier €20, 3rd tier €25. Pre-booking by MB WAY 910 272 196 · Information +351 920 472 974.',
+           fr:'Samedi, 22h00. Billets : 1er lot 15 €, 2e lot 20 €, 3e lot 25 €. Pré-réservation par MB WAY 910 272 196 · Informations +351 920 472 974.'} },
+
+  { data:'2026-09-26', tipo:'evento',
+    titulo:'Show de Independência da Guiné-Bissau',
+    local:'Voyage Disco-Bar · Rua 25 de Abril, Quarteira, Algarve',
+    cartaz:'cartaz-independencia-gb.webp',
+    texto:{pt:'Sábado, a partir das 22h00. Live act Charbel, com Nigga Djastin, Star Candinha e Dri. Música por Afro Lion e DJ Xface. Bilhetes: 1.º lote 15 €, 2.º lote 20 €, 3.º lote 25 €. Informações e reservas 963 793 196 · 920 318 557.',
+           en:'Saturday, from 10 pm. Live act Charbel, with Nigga Djastin, Star Candinha and Dri. Music by Afro Lion and DJ Xface. Tickets: 1st tier €15, 2nd tier €20, 3rd tier €25. Information and bookings 963 793 196 · 920 318 557.',
+           fr:'Samedi, à partir de 22h00. Live act Charbel, avec Nigga Djastin, Star Candinha et Dri. Musique par Afro Lion et DJ Xface. Billets : 1er lot 15 €, 2e lot 20 €, 3e lot 25 €. Informations et réservations 963 793 196 · 920 318 557.'} },
+
   { data:'2022-06-24', tipo:'evento',
     titulo:'Irmãos Verdades — “Te Amo”',
     local:'Lisboa ao Vivo, Lisboa',
@@ -1458,10 +1483,14 @@ function pintaAgenda(){
         <span>${e._d.getFullYear()}</span>
         <span class="selo${proximo?'':' passado'}">${selo}</span>
       </div>
-      <div>
-        <h3>${txt(e.titulo)}</h3>
-        ${e.texto?`<p>${txt(e.texto)}</p>`:''}
-        ${e.local?`<span class="onde">${txt(e.local)}</span>`:''}
+      <div class="corpo">
+        ${e.cartaz?`<div class="cartaz" data-zoom="img/${e.cartaz}" tabindex="0">
+          <img src="img/${e.cartaz}" alt="${txt(e.titulo).replace(/"/g,'&quot;')}" loading="lazy"></div>`:''}
+        <div>
+          <h3>${txt(e.titulo)}</h3>
+          ${e.texto?`<p>${txt(e.texto)}</p>`:''}
+          ${e.local?`<span class="onde">${txt(e.local)}</span>`:''}
+        </div>
       </div>
       ${e.link?`<a class="lnk" href="${e.link}" target="_blank" rel="noopener">${d.more}<svg width="14" height="14"><use href="#ar"/></svg></a>`:'<span></span>'}
     </article>`;
