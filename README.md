@@ -87,6 +87,28 @@ do que o necessário e a foto vai sair menos nítida.
 não aparece no site: o servidor anuncia-o como WebP e o browser recusa-o,
 por causa dos cabeçalhos de segurança. A ferramenta trata da conversão.
 
+## 2. Abertura com o logótipo
+
+Ao entrar no site aparece o logótipo sobre fundo preto durante **1,75
+segundos**, com três ondas a irradiar, e depois desvanece. É feito com o
+logótipo que já existe — não há vídeo nem peso acrescentado.
+
+Só aparece quando faz sentido:
+
+- **uma vez por sessão** (guardado em `sessionStorage`); quem navega pelo
+  site ou volta atrás não a vê outra vez;
+- **nunca** para quem tem «reduzir movimento» ligado no sistema;
+- **nunca** quando o endereço já aponta para uma secção (`…#projetos`),
+  porque essa pessoa sabe onde quer ir.
+
+Sai a qualquer momento com o botão «Saltar», um clique, uma tecla, a roda
+do rato ou um toque no ecrã. Se o JavaScript falhar, fica escondida e o
+site abre normalmente.
+
+Para mudar a duração, procure `setTimeout(fim,1750)` no `index.html`.
+Para a desligar de vez, apague o bloco `<div id="intro">` e o `<script>`
+que vem logo a seguir.
+
 ## 2. Agenda e notícias
 
 A secção «Agenda» é alimentada por uma lista no `<script>` do `index.html`.

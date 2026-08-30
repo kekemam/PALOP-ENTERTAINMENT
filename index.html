@@ -18,6 +18,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2308080a'/%3E%3Cg fill='none' stroke='%23d8b45c' stroke-width='9' stroke-linecap='round'%3E%3Cpath d='M42 26 A24 24 0 0 1 42 74'/%3E%3Cpath d='M35 12 A40 40 0 0 1 35 88'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="img/logo-palop.webp" as="image" fetchpriority="high">
 <link rel="preload" href="fonts/sora-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -146,6 +147,32 @@ section{position:relative}
   letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-bottom:4px;
   border-bottom:1px solid rgba(216,180,92,.3);transition:.35s var(--ease)}
 .lnk:hover{color:var(--gold-l);border-color:var(--gold-l);gap:14px}
+
+/* ── abertura ───────────────────────────────────────────── */
+#intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--black);
+  transition:opacity .45s var(--ease);will-change:opacity}
+#intro[hidden]{display:none}
+#intro.sai{opacity:0;pointer-events:none}
+#intro .marca{position:relative;display:grid;place-items:center;padding:40px}
+#intro img{width:min(46vw,300px);height:auto;position:relative;z-index:2;
+  opacity:0;transform:scale(.94);animation:introMarca .75s var(--ease) .12s forwards}
+@keyframes introMarca{to{opacity:1;transform:scale(1)}}
+#intro .onda{position:absolute;left:50%;top:50%;width:min(46vw,300px);aspect-ratio:1;
+  translate:-50% -50%;border:1px solid rgba(216,180,92,.5);border-radius:50%;
+  opacity:0;animation:introOnda 1.5s var(--ease) forwards}
+#intro .onda:nth-of-type(2){animation-delay:.22s}
+#intro .onda:nth-of-type(3){animation-delay:.44s}
+@keyframes introOnda{
+  0%{opacity:0;transform:scale(.5)}
+  25%{opacity:.55}
+  100%{opacity:0;transform:scale(2.1)}}
+#intro .saltar{position:absolute;left:50%;bottom:clamp(30px,7vh,64px);translate:-50% 0;
+  font-family:var(--f);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mute2);background:none;border:0;cursor:pointer;padding:12px 18px;
+  opacity:0;animation:introSaltar .5s var(--ease) .7s forwards;transition:color .3s}
+#intro .saltar:hover{color:var(--gold)}
+@keyframes introSaltar{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){#intro{display:none}}
 
 /* ── header ─────────────────────────────────────────────── */
 header{
@@ -542,6 +569,41 @@ footer address{font-style:normal;font-size:.9rem;color:var(--mute);line-height:1
 </style>
 </head>
 <body>
+<div id="intro" hidden aria-hidden="true">
+  <div class="marca">
+    <span class="onda"></span><span class="onda"></span><span class="onda"></span>
+    <img src="img/logo-palop.webp" alt="" width="460" height="255" fetchpriority="high">
+  </div>
+  <button class="saltar" type="button" id="intro-saltar">Saltar</button>
+</div>
+<script>
+/* Abertura: só na primeira visita, só se a pessoa não pediu menos animação,
+   e nunca quando o endereço já aponta para uma secção. Se o JavaScript
+   falhar, o ecrã fica escondido e o site abre normalmente. */
+(function(){
+  var i=document.getElementById('intro');
+  if(!i) return;
+  var reduz=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var jaViu=false; try{ jaViu=!!sessionStorage.getItem('palop-intro') }catch(e){}
+  if(reduz||jaViu||location.hash) return;
+  try{ sessionStorage.setItem('palop-intro','1') }catch(e){}
+  i.hidden=false;
+  document.documentElement.style.overflow='hidden';
+  var fim=function(){
+    if(i.classList.contains('sai')) return;
+    i.classList.add('sai');
+    document.documentElement.style.overflow='';
+    setTimeout(function(){ i.remove() },500);
+  };
+  var t=setTimeout(fim,1750);
+  var agora=function(){ clearTimeout(t); fim() };
+  document.getElementById('intro-saltar').addEventListener('click',agora);
+  i.addEventListener('click',agora);
+  addEventListener('keydown',agora,{once:true});
+  addEventListener('wheel',agora,{once:true,passive:true});
+  addEventListener('touchstart',agora,{once:true,passive:true});
+})();
+</script>
 <a class="skip" href="#main" data-i="skip">Saltar para o conteúdo</a>
 <div class="grain" aria-hidden="true"></div>
 
